@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const ConsoleComponent = (props) => {
   return <Container>Dashboard {props.capsules}</Container>;

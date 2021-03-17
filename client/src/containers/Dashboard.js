@@ -1,8 +1,8 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 import ConsoleComponent from '../components/ConsoleComponent';
 import ControlComponent from '../components/ControlComponent';
-import { getAllCapsules, getLandingPadByID } from "../redux/space/action";
+import { getAllCapsules, getLandingPadByID } from '../redux/space/action';
 
 const Dashboard = (props) => {
 
