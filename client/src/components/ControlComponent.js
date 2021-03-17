@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
 import { ReactComponent as Rocket } from '../assets/rocket.svg';
 
 const ControlComponent = (props) => {

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const ConsoleComponent = (props) => {
   return <Container>Dashboard {props.capsules}</Container>;
 };
+
 const Container = styled.div`
   flex: 1;
   overflow-y: auto;
