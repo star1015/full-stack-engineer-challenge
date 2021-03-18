@@ -24,17 +24,14 @@ app.get('/api/getAllCapsules', async (req, res) => {
 
 app.get('/api/getLandingPadByID/:id', async (req, res) => {
     const id = req.params.id;
-
-    db.spaceData.findOne({ where: { id } })
-    .then(result => {
+    try {
+        const result = await db.spaceData.findOne({ where: { id } })
         if (result != null) {
             res.send(result.spaceItem);
         }
-        else
-            return result;
-    }).then(() => {
-        return axios.get(`https://api.spacexdata.com/v3/landpads/${id}`)
-    }).then(serverData => {
+        
+        const serverData = await axios.get(`https://api.spacexdata.com/v3/landpads/${id}`);
+
         db.spaceData.create({id: id, spaceItem: serverData.data}).then(() => {
             const item = {
                 id: serverData.data.id,
@@ -44,7 +41,10 @@ app.get('/api/getLandingPadByID/:id', async (req, res) => {
             }
             res.send(item);
         });
-    }).catch(error => console.log(error));
+    } catch (error) {
+        res.status(406).send(error);
+    }
+        
 });
 
 app.listen('4000');
