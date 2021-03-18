@@ -20,7 +20,7 @@ export const getAllCapsules = () => async (dispatch) => {
 export const getLandingPadByID = (id) => async (dispatch) => {
     try {
         await api.get(`${process.env.REACT_APP_API_URL}/getLandingPadByID/${id}`).then(res => {
-            dispatch({ type: GET_LANDING_PAD_BY_ID, payload: res });
+            dispatch({ type: GET_LANDING_PAD_BY_ID, payload: res.data });
         
             logger.info("success api - getLandingPadByID");
             

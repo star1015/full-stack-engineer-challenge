@@ -25,10 +25,11 @@ app.get('/api/getAllCapsules', async (req, res) => {
 app.get('/api/getLandingPadByID/:id', async (req, res) => {
     const id = req.params.id;
 
-    db.spaceData.findOne({where:{id}})
+    db.spaceData.findOne({ where: { id } })
     .then(result => {
-        if (result !=null)
-            res.send(result);
+        if (result != null) {
+            res.send(result.spaceItem);
+        }
         else
             return result;
     }).then(() => {
@@ -43,9 +44,7 @@ app.get('/api/getLandingPadByID/:id', async (req, res) => {
             }
             res.send(item);
         });
-    }).catch(error => res.status(error.response.status).send({
-        message: error.response.statusText
-    }));
+    }).catch(error => console.log(error));
 });
 
 app.listen('4000');
