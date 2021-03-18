@@ -23,7 +23,7 @@ const Dashboard = (props) => {
   return (
       <React.Fragment>
           <ConsoleComponent content={props.spaces} />
-          <ControlComponent handleCapsulesSubmit={handleCapsulesSubmit} handleLandingPadSubmit={handleLandingPadSubmit} />
+          <ControlComponent handleCapsulesSubmit={handleCapsulesSubmit} handleLandingPadSubmit={handleLandingPadSubmit} {...props} />
       </React.Fragment>
   );
 };

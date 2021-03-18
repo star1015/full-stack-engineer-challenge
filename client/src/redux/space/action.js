@@ -1,37 +1,34 @@
-import { GET_ALL_CAPSULES, GET_LANDING_PAD_BY_ID } from './constant';
+import { GET_ALL_CAPSULES, GET_LANDING_PAD_BY_ID, GET_ERROR } from './constant';
 import { api } from '../../services';
 import logger from '../../utils/logger';
 
 export const getAllCapsules = () => async (dispatch) => {
     try {
-
-        const { data } = await api.get(`${process.env.API_URL}/capsules`);
-
-        dispatch({ type: GET_ALL_CAPSULES, payload: data.capsules });
+        await api.get(`${process.env.REACT_APP_API_URL}/getAllCapsules`).then(res => {
+            dispatch({ type: GET_ALL_CAPSULES, payload: res.data });
         
-        logger.info("success api - getAllCapsules");
-
-        return data;
-
+            logger.info("success api - getAllCapsules");
+    
+            return res;
+        });
     } catch (error) {
-        logger.error(error.response.data);
-        return error.response.data;
+        logger.error(error);
+        return error;
     }
 }
 
 export const getLandingPadByID = (id) => async (dispatch) => {
     try {
+        await api.get(`${process.env.REACT_APP_API_URL}/getLandingPadByID/${id}`).then(res => {
+            dispatch({ type: GET_LANDING_PAD_BY_ID, payload: res });
         
-        const { data } = await api.get(`${process.env.API_URL}/landpads/${id}`);
-
-        dispatch({ type: GET_LANDING_PAD_BY_ID, payload: data.body });
-        
-        logger.info("success api - getLandingPadByID");
-        
-        return data;
-
+            logger.info("success api - getLandingPadByID");
+            
+            return res;
+        });
     } catch (error) {
-        logger.error(error.response.data);
-        return error.response.data;
+        logger.error(error);
+        dispatch({ type: GET_ERROR, payload: error.response.data});
+        return error;
     }
 }

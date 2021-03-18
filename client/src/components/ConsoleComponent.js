@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ConsoleComponent = (props) => {
-  return <Container>Dashboard {props.capsules}</Container>;
+  return <Container dangerouslySetInnerHTML={{ __html: props.content.data && JSON.stringify(props.content.data)}}></Container>;
 };
 
 const Container = styled.div`

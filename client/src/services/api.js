@@ -2,7 +2,7 @@ import axios from 'axios';
 import logger from '../utils/logger';
 
 const baseApi = axios.create({
-  baseURL: process.env.API_URL,
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 baseApi.interceptors.request.use(

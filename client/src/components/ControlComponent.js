@@ -44,6 +44,7 @@ const ControlComponent = (props) => {
       <Button onClick={props.handleCapsulesSubmit}>Capsules</Button>
       <RocketView><Rocket /></RocketView>
       {state.hasError && <ErrorMsg>{state.errMsg}</ErrorMsg>}
+      {props.spaces.error && <ErrorMsg>{props.spaces.error.message}</ErrorMsg>}
       <Input type="text" placeholder="text" onChange={handleLandingPadID}></Input>
       <Button onClick={() => props.handleLandingPadSubmit(state.padID)} disabled={state.hasError}>Landing Pad</Button>
     </Container>
@@ -91,6 +92,11 @@ const RocketView = styled.div`
   flex: 1 1 0%;
 `
 const ErrorMsg = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 12px;
+  color: red;
+  padding: 10px;
 `
 export default ControlComponent;

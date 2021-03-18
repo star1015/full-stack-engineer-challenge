@@ -1,8 +1,8 @@
-import { GET_ALL_CAPSULES, GET_LANDING_PAD_BY_ID } from './constant';
+import { GET_ALL_CAPSULES, GET_LANDING_PAD_BY_ID, GET_ERROR } from './constant';
 
 const DEFAULT_STATE = {
-    capsules: null,
-    landingPad: null,
+    data: null,
+    error: null
 };
 
 const spaceReducer = (state = DEFAULT_STATE, action) => {
@@ -10,12 +10,19 @@ const spaceReducer = (state = DEFAULT_STATE, action) => {
         case GET_ALL_CAPSULES:
             return {
                 ...state,
-                capsules: action.payload.capsules
+                data: action.payload,
+                error: null
             }
         case GET_LANDING_PAD_BY_ID:
             return {
                 ...state,
-                landingPad: action.payload.landingPad
+                data: action.payload,
+                error: null
+            }
+        case GET_ERROR:
+            return {
+                ...state,
+                error: action.payload
             }
         default:
             return state;

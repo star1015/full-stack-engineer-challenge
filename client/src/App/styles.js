@@ -7,9 +7,9 @@ const Application = styled.div`
     font-style: italic;
     color: white;
     
-    svg, span {
-        padding-left: 10px;
-    }
+    // svg, span {
+    //     padding-left: 10px;
+    // }
 
     position: absolute;
     top: 0;
