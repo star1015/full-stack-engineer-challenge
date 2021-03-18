@@ -35,7 +35,13 @@ app.get('/api/getLandingPadByID/:id', async (req, res) => {
         return axios.get(`https://api.spacexdata.com/v3/landpads/${id}`)
     }).then(serverData => {
         db.spaceData.create({id: id, spaceItem: serverData.data}).then(() => {
-            res.send(serverData.data);
+            const item = {
+                id: serverData.data.id,
+                full_name: serverData.data.full_name,
+                status: serverData.data.status,
+                location: serverData.data.location
+            }
+            res.send(item);
         });
     }).catch(error => res.status(error.response.status).send({
         message: error.response.statusText
